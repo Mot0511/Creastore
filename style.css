@@ -1,0 +1,7 @@
+body{
+  background: #3C3C3C;
+}
+h1, h2, h3, p, a{
+  color: white;
+  text-decoration: none;
+}

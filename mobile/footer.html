@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style media="screen">
+      .footer{
+        background: #3F1A00;
+        height: 264px;
+        margin-top: 130px;
+        padding-top: 50px;
+      }
+      .label{
+        font-size: 48px;
+      }
+      p, a{
+        color: white;
+        text-decoration: none;
+        transition: color 0.5s;
+      }
+      a:hover{
+        color: grey;
+      }
+      body{
+        background-color: #3C3C3C;
+      }
+      .container{
+        margin-top: 30px;
+      }
+      .menu a{
+        font-size: 24px;
+        margin-left: 27px;
+      }
+      .menu{
+        margin-top: 20px;
+      }
+      .loginBt{
+        width: 201px;
+        height: 77px;
+        background-color: #CE0000;
+        transition: background-color 0.3s;
+        border: 0px;
+        border-radius: 20px;
+        color: white;
+        font-size: 24px;
+      }
+      .loginBt:hover{
+        background-color: #870000;
+      }
+      .rights{
+        margin-top: 70px;
+      }
+      @media (max-width: 1000px){
+        .loginBt{
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <p class="label">ShawClub</p>
+          </div>
+          <div class="col-lg-4 menu">
+            <a href="#shawarma">Шаурма</a>
+            <a href="#drinks">Напитки</a>
+          </div>
+          <div class="col-lg-4">
+            <a href="#"><button type="button" class="loginBt" name="button">Войти<br>Регистрация</button> </a>
+          </div>
+        </div>
+      </div>
+      <center><p class="rights">2022-2022</p></center>
+    </div>
+  </body>
+</html>

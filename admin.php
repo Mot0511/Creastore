@@ -25,15 +25,15 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     <style media="screen">
     .loginBt{
       width: 201px;
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
       transition: background-color 0.3s;
       border: 0px;
       border-radius: 20px;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 24px;
     }
     .loginBt:hover{
-      background-color: #870000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .shawarma{
       margin-top: 95px;

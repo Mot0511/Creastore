@@ -1,3 +1,9 @@
+<?php
+  $DBdata = [file_get_contents('data/hostDB.txt'), file_get_contents('data/loginDB.txt'), file_get_contents('data/passwordDB.txt'), file_get_contents('data/nameDB.txt')];
+  $link = mysqli_connect($DBdata[0], $DBdata[1], $DBdata[2], $DBdata[3]);
+  $res = mysqli_query($link, "SELECT * FROM data");
+  for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
+?>
 <!DOCTYPE html>
 <html lang="ru" dir="ltr">
   <head>
@@ -11,7 +17,7 @@
         text-decoration: none;
       }
       p, a{
-        color: white;
+        color: #<?php echo $data[0]['textColor']; ?>;
         text-decoration: none;
         transition: color 0.5s;
       }
@@ -19,7 +25,7 @@
         color: grey;
       }
       body{
-        background-color: #3C3C3C;
+        background-color: #<?php echo $data[0]['bg']; ?>;
       }
       .container{
         margin-top: 30px;
@@ -35,29 +41,29 @@
       .loginBt{
         width: 201px;
         height: 77px;
-        background-color: #CE0000;
+        background-color: #<?php echo $data[0]['buttonBg']; ?>;
         transition: background-color 0.3s;
         border: 0px;
         border-radius: 20px;
-        color: white;
+        color: #<?php echo $data[0]['buttonTextBg']; ?>;
         font-size: 24px;
       }
       .loginBt:hover{
-        background-color: #870000;
+        background-color: #<?php echo $data[0]['buttonBg']; ?>;
       }
       .profileBt{
         width: 201px;
         height: 83px;
-        border: 5px solid #CE0000;
+        border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
         border-radius: 20px;
         background: none;
-        color: white;
+        color: #<?php echo $data[0]['buttonTextBg']; ?>;
         font-size: 24px;
         transition: background-color 0.3s;
         margin-left: 20px;
       }
       .profileBt:hover{
-        background-color: #CE0000;
+        background-color: #<?php echo $data[0]['buttonBg']; ?>;
       }
       .cart{
         width: 50px;
@@ -112,7 +118,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 labelDiv">
-        <a href="index.php" class="label">ShawClub</a>
+        <a href="index.php" class="label"><?php echo $data[0]['name']; ?></a>
         </div>
         <div class="col-md-4 menu">
           <?php

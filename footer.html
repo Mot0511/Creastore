@@ -1,9 +1,16 @@
+<?php
+  $DBdata = [file_get_contents('data/hostDB.txt'), file_get_contents('data/loginDB.txt'), file_get_contents('data/passwordDB.txt'), file_get_contents('data/nameDB.txt')];
+  $link = mysqli_connect($DBdata[0], $DBdata[1], $DBdata[2], $DBdata[3]);
+  $res = mysqli_query($link, "SELECT * FROM data");
+  for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title></title>
-    
+
     <style media="screen">
       .footer{
         background: #3F1A00;

@@ -8,6 +8,10 @@ if (isset($_COOKIE['login']) and isset($_COOKIE['pass'])){
     $btAddToCart = 0;
   }
 }
+$DBdata = [file_get_contents('data/hostDB.txt'), file_get_contents('data/loginDB.txt'), file_get_contents('data/passwordDB.txt'), file_get_contents('data/nameDB.txt')];
+$link = mysqli_connect($DBdata[0], $DBdata[1], $DBdata[2], $DBdata[3]);
+$res = mysqli_query($link, "SELECT * FROM data");
+for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
 ?>
 <!DOCTYPE html>
 <html lang="ru" dir="ltr">

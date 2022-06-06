@@ -6,6 +6,12 @@ else{
   echo '<script>location="index.php"</script>';
 }
 $page = basename(__FILE__);
+
+$DBdata = [file_get_contents('data/hostDB.txt'), file_get_contents('data/loginDB.txt'), file_get_contents('data/passwordDB.txt'), file_get_contents('data/nameDB.txt')];
+$link = mysqli_connect($DBdata[0], $DBdata[1], $DBdata[2], $DBdata[3]);
+$res = mysqli_query($link, "SELECT * FROM data");
+for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
+
 ?>
 <!DOCTYPE html>
 <html lang="ru" dir="ltr">
@@ -33,7 +39,7 @@ $page = basename(__FILE__);
       margin-top: 95px;
     }
     .product{
-      background: #3F1A00;
+      background: #<?php echo $data[0]['blockBg']; ?>;
       border-radius: 20px;
       width: 297px;
       padding-bottom: 20px;
@@ -43,30 +49,30 @@ $page = basename(__FILE__);
     .orderNow{
       width: 134px;
       height: 55px;
-      border: 5px solid #CE0000;
+      border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       background: none;
-      color: white;
+      color: <?php echo $data[0]['buttonTextBg']; ?>;
       font-size: 18px;
       transition: background-color 0.3s;
     }
     .orderNow:hover{
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .addToCart{
       width: 134px;
       height: 55px;
-      background: #CE0000;
+      background: #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       border: 0px;
       margin-left: 10px;
       margin-top: 10px;
-      color: white;
+      color: <?php echo $data[0]['buttonTextBg']; ?>;
       font-size: 20px;
       transition: background-color 0.2s;
     }
     .addToCart:hover{
-      background-color: #870000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .imageProduct{
       margin-top: 20px;

@@ -52,7 +52,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
       border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       background: none;
-      color: <?php echo $data[0]['buttonTextBg']; ?>;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 18px;
       transition: background-color 0.3s;
     }
@@ -197,9 +197,10 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="inputPass" class="col-sm-2 col-form-label">Состав</label>
+                <label for="inputPass" class="col-sm-2 col-form-label">Описание</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" required id="inputCompound" name="compound" value="" autocomplete="off">
+                  <textarea name="compound" class="form-control" required id="inputCompound" autocomplete="off" rows="5" cols="80"></textarea>
+                  <!-- <input type="text" class="form-control" required id="inputCompound" name="compound" value="" autocomplete="off"> -->
                 </div>
               </div>
               <div class="row mb-3">
@@ -277,7 +278,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
             foreach ($data as $j){
               echo '
                 <div class="col-lg-4">
-                <a href="product.php?name='.$j['name'].'&compound='.$j[$i]['compound'].'&image='.$j['image'].'"><div class="product">
+                <a href="product.php?name='.$j['name'].'&compound='.$j['compound'].'&image='.$j['image'].'"><div class="product">
                     <center>
                       <div class="orderBts">
                       <img src="img/products/'.$j['image'].'" class="imageProduct" alt="">

@@ -17,31 +17,31 @@
 .orderNow{
   width: 49%;
   height: 55px;
-  border: 5px solid #CE0000;
+  border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
   border-radius: 20px;
   background: none;
-  color: white;
+  color: #<?php echo $data[0]['buttonTextColor']; ?>;
   font-size: 18px;
   transition: background-color 0.3s;
   margin-top: 100px;
 }
 .orderNow:hover{
-  background-color: #CE0000;
+  background-color: #<?php echo $data[0]['buttonBg']; ?>;
 }
 .addToCart{
   width: 100%;
   height: 55px;
-  background: #CE0000;
+  background: #<?php echo $data[0]['buttonBg']; ?>;
   border-radius: 20px;
   border: 0px;
   margin-left: 10px;
   margin-top: 50px;
-  color: white;
+  color: #<?php echo $data[0]['buttonTextColor']; ?>;
   font-size: 20px;
   transition: background-color 0.2s;
 }
 .addToCart:hover{
-  background-color: #870000;
+  background-color: #<?php echo $data[0]['buttonBg']; ?>;
 }
 .image{
   width: 296px;
@@ -53,10 +53,17 @@
   font-size: 35px;
   margin-left: -100px;
 }
+.price{
+  margin-top: 70px;
+  font-size: 35px;
+  margin-left: 0px;
+}
 .compound{
   font-size: 24px;
   margin-left: -100px;
+  width: 100px;
 }
+
 @media (max-width: 1000px){
   .image{
     width: 100%;
@@ -81,6 +88,7 @@
     $compound = $_GET['compound'];
     $image = $_GET['image'];
     $email = $_GET['email'];
+    $price = $_GET['price'];
     ?>
     <div class="container">
       <div class="row">
@@ -89,10 +97,13 @@
         </div>
         <div class="col-lg-4 text">
           <p class="heading">Шаурма "<?php echo $name; ?>"</p>
-          <p class="compound"><?php echo $compound; ?></p>
+          <p class="compound"><?php echo $compound; ?>
+          </p>
+
 
         </div>
       </div>
+      <p class="price">Цена: <?php echo $price; ?> руб.</p>
       <div class="orderBts">
     <a href="addToCart.php?name=<?php echo $name; ?>&email=<?php echo $email; ?>"> <button type="button" class="addToCart" name="button">В корзину</button></a>
     </div>

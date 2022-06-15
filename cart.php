@@ -26,21 +26,21 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     }
     .loginBt{
       width: 201px;
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
       transition: background-color 0.3s;
       border: 0px;
       border-radius: 20px;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 24px;
     }
     .loginBt:hover{
-      background-color: #870000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .shawarma{
       margin-top: 95px;
     }
     .product{
-      background: #3F1A00;
+      background: #<?php echo $data[0]['blockBg']; ?>;
       border-radius: 20px;
       width: 297px;
       padding-bottom: 20px;
@@ -50,30 +50,30 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     .orderNow{
       width: 134px;
       height: 55px;
-      border: 5px solid #CE0000;
+      border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       background: none;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 18px;
       transition: background-color 0.3s;
     }
     .orderNow:hover{
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .addToCart{
       width: 134px;
       height: 55px;
-      background: #CE0000;
+      background: #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       border: 0px;
       margin-left: 10px;
       margin-top: 10px;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 20px;
       transition: background-color 0.2s;
     }
     .addToCart:hover{
-      background-color: #870000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .imageProduct{
       margin-top: 20px;
@@ -85,7 +85,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     }
     .heading{
       font-size: 36px;
-      color: white;
+      color: #<?php echo $data[0]['TextColor']; ?>;
       margin-top: 50px;
       position: relative;
       top: 30px;
@@ -93,38 +93,38 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     .remove{
       width: 95%;
       height: 55px;
-      border: 5px solid #CE0000;
+      border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       background: none;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 18px;
       transition: background-color 0.3s;
       margin-top: 20px;
     }
     .remove:hover{
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .edit{
       width: 95%;
       height: 55px;
-      background: #CE0000;
+      background: #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       border: 0px;
       margin-left: 10px;
       margin-top: 10px;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 20px;
       transition: background-color 0.2s;
       margin-top: 20px;
       margin-left: 0px;
     }
     .edit:hover{
-      background-color: #870000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .editBlock{
       width: 462px;
       height: 550px;
-      background: #CE0000;
+      background: #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       position: fixed;
       left: 35%;
@@ -134,12 +134,12 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
       font-size: 36px;
     }
     .editLabel{
-      color: white;
+      color: #<?php echo $data[0]['textColor']; ?>;
       font-size: 24px;
     }
     .input{
       width: 95%;
-      background-color: #3F1A00;
+      background-color: #<?php echo $data[0]['blockBg']; ?>;
       height: 55px;
       border: 0px;
       border-radius: 10px;
@@ -148,24 +148,24 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     }
     .button{
       width: 95%;
-      background-color: #562400;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
       height: 55px;
       border: 0px;
       border-radius: 10px;
       font-size: 24px;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       margin-top: 20px;
       transition: background-color 0.2s;
     }
     .button:hover{
-      background-color: #3F1A00;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     h1{
       color: white;
     }
     .thing{
       border-radius: 20px;
-      background-color: #3F1A00;
+      background-color: #<?php echo $data[0]['blockBg']; ?>;
       padding-top: 10px;
       padding-left: 10px;
       margin-bottom: 20px;
@@ -180,25 +180,25 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     .done{
       width: 134px;
       height: 55px;
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       border: 0px;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 20px;
       transition: background-color 0.3s;
       margin-top: 10px;
 
     }
     .done:hover{
-      background-color: #870000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .cancel{
       width: 134px;
       height: 55px;
       border-radius: 20px;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 20px;
-      border: 5px solid #CE0000;
+      border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
       background: none;
       transition: background-color 0.3s;
       margin-top: 10px;
@@ -206,20 +206,20 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
       margin-bottom: 10px;
     }
     .cancel:hover{
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .numberBt{
       width: 35px;
       height: 35px;
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
       transition: background-color 0.3s;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       border: 0;
       border-radius: 10px;
       font-size: 20px;
     }
     .numberBt:hover{
-      background-color: #870000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .numberControl{
       width: 250px;
@@ -228,27 +228,27 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
       width: 100%;
       height: 50px;
       font-size: 25px;
-      color: white;
+      color: #<?php echo $data[0]['buttonTextColor']; ?>;
       border: 0;
       border-radius: 20px;
-      background-color: #CE0000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
       transition: background-color 0.3s;
       margin-top: 50px;
     }
     .orderSendBt:hover{
-      background-color: #870000;
+      background-color: #<?php echo $data[0]['buttonBg']; ?>;
     }
     .address{
       width: 100%;
       height: 40px;
-      background-color: #3F1A00;
+      background-color: #<?php echo $data[0]['blockBg']; ?>;
       color: white;
       border: 0;
       border-radius: 10px;
       margin-left: -10px;
     }
     .address::placeholder{
-      color: white;
+      color: #<?php echo $data[0]['textColor']; ?>;
       font-size: 20px;
     }
     @media (max-width: 1000px){

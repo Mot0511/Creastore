@@ -251,11 +251,11 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
       $link = mysqli_connect($DBdata[0], $DBdata[1], $DBdata[2], $DBdata[3]);
         mysqli_set_charset($link, 'utf8');
 
-        $res = mysqli_query($link, "SELECT * FROM point ORDER BY id DESC");
-        for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
+        $res2 = mysqli_query($link, "SELECT * FROM point ORDER BY id DESC");
+        for ($data2 = []; $row = mysqli_fetch_assoc($res2); $data2[] = $row);
 
-        if ($data != []){
-          foreach ($data as $i){
+        if ($data2 != []){
+          foreach ($data2 as $i){
             if ($i['carrier'] == $login){
               $isOrders = true;
             if ($i['status'] == 2 or $i['status'] == 4 or $i['status'] == 5){
@@ -264,7 +264,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
                 <div class="col-lg-6">
                   <h2>'.$i['products'].'</h2>
                   <p>'.$i['number'].', '.$i['address'].'</p>
-                  <h3 style="color: '.$data[0]['textColor'].';">Стоимость: '.$i['price'].' руб.</h3>
+                  <h3 style="color: #'.$data[0]['textColor'].';">Стоимость: '.$i['price'].' руб.</h3>
                 </div>
                 <div class="col-lg-6">
                 ';

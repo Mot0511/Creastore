@@ -45,7 +45,7 @@
         transition: background-color 0.3s;
         border: 0px;
         border-radius: 20px;
-        color: #<?php echo $data[0]['buttonTextBg']; ?>;
+        color: #<?php echo $data[0]['buttonTextColor']; ?>;
         font-size: 24px;
       }
       .loginBt:hover{
@@ -57,7 +57,7 @@
         border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
         border-radius: 20px;
         background: none;
-        color: #<?php echo $data[0]['buttonTextBg']; ?>;
+        color: #<?php echo $data[0]['buttonTextColor']; ?>;
         font-size: 24px;
         transition: background-color 0.3s;
         margin-left: 20px;
@@ -87,6 +87,7 @@
     </style>
   </head>
   <body>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

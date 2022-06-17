@@ -28,7 +28,7 @@ $link = mysqli_connect($host, $login, $password, $nameDB);
 mysqli_query($link, "
 CREATE TABLE users
 (
-  id INT(255),
+  id int(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(1000),
   password INT(255),
   status INT(255)
@@ -38,7 +38,7 @@ CREATE TABLE users
 mysqli_query($link, "
 CREATE TABLE data
 (
-  id INT(255),
+  id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(1000),
   bg VARCHAR(1000),
   blockBg VARCHAR(1000),
@@ -51,39 +51,37 @@ CREATE TABLE data
 mysqli_query($link, "
 CREATE TABLE point
 (
-  id INT(255),
-  name VARCHAR(1000),
-  bg VARCHAR(1000),
-  blockBg VARCHAR(1000),
-  buttonBg VARCHAR(1000),
-  textColor VARCHAR(1000),
-  buttonTextColor VARCHAR(1000)
+  id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  products VARCHAR(1000),
+  price INT(255),
+  number VARCHAR(1000),
+  email VARCHAR(1000),
+  status VARCHAR(1000),
+  address VARCHAR(1000),
+  point VARCHAR(1000),
+  carrier VARCHAR(1000)
   )
 
 ");
 mysqli_query($link, "
 CREATE TABLE cart
 (
-  id INT(255),
+  id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(1000),
-  bg VARCHAR(1000),
-  blockBg VARCHAR(1000),
-  buttonBg VARCHAR(1000),
-  textColor VARCHAR(1000),
-  buttonTextColor VARCHAR(1000)
+  price INT(255),
+  number INT(255),
+  email VARCHAR(1000)
   )
 
 ");
 mysqli_query($link, "
 CREATE TABLE products
 (
-  id INT(255),
+  id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(1000),
-  bg VARCHAR(1000),
-  blockBg VARCHAR(1000),
-  buttonBg VARCHAR(1000),
-  textColor VARCHAR(1000),
-  buttonTextColor VARCHAR(1000)
+  price VARCHAR(1000),
+  compound VARCHAR(1000),
+  category VARCHAR(1000)
   )
 
 ");

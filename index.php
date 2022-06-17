@@ -34,19 +34,19 @@
           <h3 class="mt-4">Данные для подключения к базе данных:</h3>
           <div class="">
             <label for="host" class="form-label">Хост</label>
-            <input type="text" id="host" class="form-control" name="host" value="" required>
+            <input type="text" id="host" class="form-control" name="host" value="localhost" required>
           </div>
           <div class="">
             <label for="login" class="form-label">Логин</label>
-              <input type="text" id="login" class="form-control" name="login" value="" required>
+              <input type="text" id="login" class="form-control" name="login" value="testStore" required>
           </div>
           <div class="">
             <label for="password" class="form-label">Пароль</label>
-            <input type="text" id="password" class="form-control" name="password" value="" required>
+            <input type="text" id="password" class="form-control" name="password" value="123" required>
           </div>
           <div class="">
             <label for="nameDB" class="form-label">Название базы данных</label>
-            <input type="text" id="nameDB" class="form-control" name="nameDB" value="" required>
+            <input type="text" id="nameDB" class="form-control" name="nameDB" value="testStore" required>
           </div>
 
         </div>

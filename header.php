@@ -17,7 +17,7 @@
         text-decoration: none;
       }
       p, a{
-        color: #<?php echo $data[0]['textColor']; ?>;
+        color: <?php echo $data[0]['textColor']; ?>;
         text-decoration: none;
         transition: color 0.5s;
       }
@@ -25,7 +25,7 @@
         color: grey;
       }
       body{
-        background-color: #<?php echo $data[0]['bg']; ?>;
+        background-color: <?php echo $data[0]['bg']; ?>;
       }
       .container{
         margin-top: 30px;
@@ -41,29 +41,29 @@
       .loginBt{
         width: 201px;
         height: 77px;
-        background-color: #<?php echo $data[0]['buttonBg']; ?>;
+        background-color: <?php echo $data[0]['buttonBg']; ?>;
         transition: background-color 0.3s;
         border: 0px;
         border-radius: 20px;
-        color: #<?php echo $data[0]['buttonTextColor']; ?>;
+        color: <?php echo $data[0]['buttonTextColor']; ?>;
         font-size: 24px;
       }
       .loginBt:hover{
-        background-color: #<?php echo $data[0]['buttonBg']; ?>;
+        background-color: <?php echo $data[0]['buttonBg']; ?>;
       }
       .profileBt{
         width: 201px;
         height: 83px;
-        border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
+        border: 5px solid <?php echo $data[0]['buttonBg']; ?>;
         border-radius: 20px;
         background: none;
-        color: #<?php echo $data[0]['buttonTextColor']; ?>;
+        color: <?php echo $data[0]['buttonTextColor']; ?>;
         font-size: 24px;
         transition: background-color 0.3s;
         margin-left: 20px;
       }
       .profileBt:hover{
-        background-color: #<?php echo $data[0]['buttonBg']; ?>;
+        background-color: <?php echo $data[0]['buttonBg']; ?>;
       }
       .cart{
         width: 50px;

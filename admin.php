@@ -25,21 +25,21 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     <style media="screen">
     .loginBt{
       width: 201px;
-      background-color: #<?php echo $data[0]['buttonBg']; ?>;
+      background-color: <?php echo $data[0]['buttonBg']; ?>;
       transition: background-color 0.3s;
       border: 0px;
       border-radius: 20px;
-      color: #<?php echo $data[0]['buttonTextColor']; ?>;
+      color: <?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 24px;
     }
     .loginBt:hover{
-      background-color: #<?php echo $data[0]['buttonBg']; ?>;
+      background-color: <?php echo $data[0]['buttonBg']; ?>;
     }
     .shawarma{
       margin-top: 95px;
     }
     .product{
-      background: #<?php echo $data[0]['blockBg']; ?>;
+      background: <?php echo $data[0]['blockBg']; ?>;
       border-radius: 20px;
       width: 297px;
       padding-bottom: 20px;
@@ -49,20 +49,20 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     .orderNow{
       width: 134px;
       height: 55px;
-      border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
+      border: 5px solid <?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       background: none;
-      color: #<?php echo $data[0]['buttonTextColor']; ?>;
+      color: <?php echo $data[0]['buttonTextColor']; ?>;
       font-size: 18px;
       transition: background-color 0.3s;
     }
     .orderNow:hover{
-      background-color: #<?php echo $data[0]['buttonBg']; ?>;
+      background-color: <?php echo $data[0]['buttonBg']; ?>;
     }
     .addToCart{
       width: 134px;
       height: 55px;
-      background: #<?php echo $data[0]['buttonBg']; ?>;
+      background: <?php echo $data[0]['buttonBg']; ?>;
       border-radius: 20px;
       border: 0px;
       margin-left: 10px;
@@ -72,7 +72,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
       transition: background-color 0.2s;
     }
     .addToCart:hover{
-      background-color: #<?php echo $data[0]['buttonBg']; ?>;
+      background-color: <?php echo $data[0]['buttonBg']; ?>;
     }
     .imageProduct{
       margin-top: 20px;

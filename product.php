@@ -17,31 +17,31 @@
 .orderNow{
   width: 49%;
   height: 55px;
-  border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
+  border: 5px solid <?php echo $data[0]['buttonBg']; ?>;
   border-radius: 20px;
   background: none;
-  color: #<?php echo $data[0]['buttonTextColor']; ?>;
+  color: <?php echo $data[0]['buttonTextColor']; ?>;
   font-size: 18px;
   transition: background-color 0.3s;
   margin-top: 100px;
 }
 .orderNow:hover{
-  background-color: #<?php echo $data[0]['buttonBg']; ?>;
+  background-color: <?php echo $data[0]['buttonBg']; ?>;
 }
 .addToCart{
   width: 100%;
   height: 55px;
-  background: #<?php echo $data[0]['buttonBg']; ?>;
+  background: <?php echo $data[0]['buttonBg']; ?>;
   border-radius: 20px;
   border: 0px;
   margin-left: 10px;
   margin-top: 50px;
-  color: #<?php echo $data[0]['buttonTextColor']; ?>;
+  color: <?php echo $data[0]['buttonTextColor']; ?>;
   font-size: 20px;
   transition: background-color 0.2s;
 }
 .addToCart:hover{
-  background-color: #<?php echo $data[0]['buttonBg']; ?>;
+  background-color: <?php echo $data[0]['buttonBg']; ?>;
 }
 .image{
   width: 296px;

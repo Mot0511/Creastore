@@ -27,7 +27,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
         margin-top: 95px;
       }
       .product{
-        background: #<?php echo $data[0]['blockBg']; ?>;
+        background: <?php echo $data[0]['blockBg']; ?>;
         border-radius: 20px;
         width: 297px;
         padding-bottom: 20px;
@@ -35,37 +35,37 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
       }
       .heading{
         font-size: 36px;
-        color: #<?php echo $data[0]['textBg']; ?>;
+        color: <?php echo $data[0]['textBg']; ?>;
         position: relative;
         top: 30px;
       }
       .orderNow{
         width: 134px;
         height: 55px;
-        border: 5px solid #<?php echo $data[0]['buttonBg']; ?>;
+        border: 5px solid <?php echo $data[0]['buttonBg']; ?>;
         border-radius: 20px;
         background: none;
-        color: #<?php echo $data[0]['buttonTextColor']; ?>;
+        color: <?php echo $data[0]['buttonTextColor']; ?>;
         font-size: 18px;
         transition: background-color 0.3s;
       }
       .orderNow:hover{
-        background-color: #<?php echo $data[0]['buttonBg']; ?>;
+        background-color: <?php echo $data[0]['buttonBg']; ?>;
       }
       .addToCart{
         width: 90%;
         height: 55px;
-        background: #<?php echo $data[0]['buttonBg']; ?>;
+        background: <?php echo $data[0]['buttonBg']; ?>;
         border-radius: 20px;
         border: 0px;
         margin-left: 0px;
         margin-top: 10px;
-        color: #<?php echo $data[0]['buttonTextColor']; ?>;
+        color: <?php echo $data[0]['buttonTextColor']; ?>;
         font-size: 20px;
         transition: background-color 0.2s;
       }
       .addToCart:hover{
-        background-color: #<?php echo $data[0]['buttonBg']; ?>;
+        background-color: <?php echo $data[0]['buttonBg']; ?>;
       }
       .imageProduct{
         margin-top: 20px;

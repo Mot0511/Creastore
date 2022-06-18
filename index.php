@@ -29,7 +29,7 @@
   <body>
     <div class="container my-3">
       <h1>Добро пожаловать! Впишите данные для сайта</h1>
-      <form class="" action="start.php" method="post">
+      <form class="" action="start.php" method="post" enctype="multipart/form-data">
         <div class="">
           <h3 class="mt-4">Данные для подключения к базе данных:</h3>
           <div class="">
@@ -55,6 +55,10 @@
           <div class="">
             <label for="name" class="form-label">Название сайта</label>
             <input type="text" id="name" class="form-control" name="name" value="" required>
+          </div>
+          <div class="">
+            <label for="name" class="form-label">Иконка сайта</label>
+            <input type="file" id="name" class="form-control" name="icon" value="" required>
           </div>
           <div class="">
             <label for="bg" class="form-label">Фон</label>
@@ -163,20 +167,21 @@
         prodId++;
         id = 'prod' + prodId;
         $('#products').append('\
-        <div class="col-lg-3 product" id="' + id + '">\
-            <label for="inputEmail" class="col-sm-2 col-form-label">Название</label>\
+        <div class="col-lg-3 product" id="'+id+'">\
+            <label for="productName" class="col-sm-2 col-form-label">Название</label>\
             <div class="col-sm-10">\
-              <input type="text" class="form-control" required id="inputName" name="name" value="" autocomplete="off">\
+              <input type="text" class="form-control" required id="productName" name="productNames[]" value="" autocomplete="off">\
             </div>\
-            <label for="inputPass" class="col-sm-2 col-form-label">Описание</label>\
-              <textarea name="compound" class="form-control" required id="inputCompound" autocomplete="off" rows="5" cols="80"></textarea>\
+            <label for="compound" class="col-sm-2 col-form-label">Описание</label>\
+              <textarea name="compounds[]" class="form-control" required id="compound" autocomplete="off" rows="5" cols="80"></textarea>\
+              <!-- <input type="text" class="form-control" required id="inputCompound" name="compound" value="" autocomplete="off"> -->\
             <label for="inputPass" class="col-sm-2 col-form-label">Картинка</label>\
-              <input type="file" class="form-control" required id="inputImage" name="image" value="" autocomplete="off">\
+              <input type="file" class="form-control" required id="inputImage" name="images[]" value="" autocomplete="off">\
             <label for="inputPass" class="col-sm-2 col-form-label">Категория</label>\
-              <input type="text" class="form-control" required id="inputCompound" name="group" value="" autocomplete="off">\
+              <input type="text" class="form-control" required id="inputCompound" name="groups[]" value="" autocomplete="off">\
             <label for="inputPass" class="col-sm-2 col-form-label">Цена (рубль)</label>\
-              <input type="number" class="form-control" required id="inputCompound" name="price" value="" autocomplete="off">\
-          <button type="button" onClick="removeAdmin(\'' + id + '\')" class="btn btn-danger mt-4" name="button">Удалить товар</button>\
+              <input type="number" class="form-control" required id="inputCompound" name="prices[]" value="" autocomplete="off">\
+          <button type="button" onClick="removeProd(\''+id+'\')" class="btn btn-danger mt-4" name="button">Удалить товар</button>\
         </div>\
         ');
     });

@@ -179,6 +179,12 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
           font-size: 60px;
       }
       }
+      .settings h1, h2, h3, p, label{
+        color: <?php echo $data[0]['textColor']; ?>
+      }
+      .settings{
+        margin-top: 50px;
+      }
     </style>
   </head>
   <body>
@@ -273,10 +279,10 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
 
           foreach ($groups as $i){
             $res = mysqli_query($link, "SELECT * FROM products WHERE category = '".$i."'");
-            for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
+            for ($data1 = []; $row = mysqli_fetch_assoc($res); $data1 [] = $row);
 
             echo '<p class="heading">'.$i.'</p>';
-            foreach ($data as $j){
+            foreach ($data1 as $j){
               echo '
                 <div class="col-lg-4">
                 <a href="product.php?name='.$j['name'].'&compound='.$j['compound'].'&image='.$j['image'].'"><div class="product">
@@ -297,10 +303,186 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
           }
 
 
-          $link->close();
-        ?></div>
 
+        ?></div>
+        <h2 class="heading">Настройки</h2>
+        <div class="settings">
+          <form class="" action="setSettings.php" method="post">
+          <div class="">
+            <h3 class="mt-4">Данные для подключения к базе данных:</h3>
+            <div class="">
+              <label for="host" class="form-label">Хост</label>
+              <input type="text" id="host" class="form-control" name="host" value="<?php echo file_get_contents('data/hostDB.txt'); ?>" required>
+            </div>
+            <div class="">
+              <label for="login" class="form-label">Логин</label>
+                <input type="text" id="login" class="form-control" name="login" value="<?php echo file_get_contents('data/loginDB.txt'); ?>" required>
+            </div>
+            <div class="">
+              <label for="password" class="form-label">Пароль</label>
+              <input type="text" id="password" class="form-control" name="password" value="<?php echo file_get_contents('data/passwordDB.txt'); ?>" required>
+            </div>
+            <div class="">
+              <label for="nameDB" class="form-label">Название базы данных</label>
+              <input type="text" id="nameDB" class="form-control" name="nameDB" value="<?php echo file_get_contents('data/nameDB.txt'); ?>" required>
+            </div>
+
+          </div>
+          <div class="">
+            <h3 class="mt-4">Основаня информация</h3>
+            <div class="">
+              <label for="name" class="form-label">Название сайта</label>
+              <input type="text" id="name" class="form-control" name="name" value="<?php echo $data[0]['name']; ?>" required>
+            </div>
+            <div class="">
+              <label for="name" class="form-label">Иконка сайта</label>
+              <input type="file" id="name" class="form-control" name="icon" value="" required>
+            </div>
+            <div class="">
+              <label for="bg" class="form-label">Фон</label>
+              <input type="color" id="bg" class="form-control" name="bg" value="#333333" required>
+            </div>
+            <div class="">
+              <label for="blockBg" class="form-label">Фон блоков</label>
+              <input type="color" id="blockBg" class="form-control" name="blockBg" value="<?php echo $data[0]['blockBg']; ?>" required>
+            </div>
+            <div class="">
+              <label for="buttonBg" class="form-label">Фон кнопок</label>
+              <input type="color" id="buttonBg" class="form-control" name="buttonBg" value="<?php echo $data[0]['buttonBg']; ?>" required>
+            </div>
+            <div class="">
+              <label for="textColor" class="form-label">Цвет текста</label>
+              <input type="color" id="textColor" class="form-control" name="textColor" value="<?php echo $data[0]['textColor']; ?>" required>
+            </div>
+            <div class="">
+              <label for="buttonTextColor" class="form-label">Цвет текста на кнопках</label>
+              <input type="color" id="buttonTextColor" class="form-control" name="buttonTextColor" value="<?php echo $data[0]['buttonTextColor']; ?>" required>
+            </div>
+          </div>
+          <div class="">
+            <h3 class="mt-4">Пользователи</h3>
+            <div class="users">
+              <div class="row" id="admins">
+            <?php
+              $users_res = mysqli_query($link, "SELECT * FROM `users`");
+              for ($users = []; $row = mysqli_fetch_assoc($users_res); $users [] = $row);
+
+              foreach ($users as $i){
+                echo '
+                <div class="col-lg-3 user" id="0">
+                  <label for="name" class="form-label">Логин</label>
+                  <input type="text" id="name" class="form-control" name="logins[]" value="'.$i['email'].'" required>
+                  <label for="password" class="form-label">Пароль</label>
+                  <input type="password" id="password" class="form-control" name="passwords[]" value="'.$i['password'].'" required>
+                  <label for="types" class="form-label">Тип</label>
+                  ';
+                  if ($i['status'] == 1){
+                    echo '
+                    <select id="types" class="form-control" name="types[]" value="'.$i['status'].'" required="required">
+                      <option value="">Выберите значение</option>
+                      <option value="1" selected>Админ</option>
+                      <option value="2">Пункт приема заказов</option>
+                      <option value="3">Курьер</option>
+                    </select>
+                    <button type="button" onClick="removeAdmin("0")" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
+                  </div>
+                  ';
+
+                  }
+                  else if ($i['status'] == 2){
+                    echo '
+                    <select id="types" class="form-control" name="types[]" value="'.$i['status'].'" required="required">
+                      <option value="">Выберите значение</option>
+                      <option value="1">Админ</option>
+                      <option value="2" selected>Пункт приема заказов</option>
+                      <option value="3">Курьер</option>
+                    </select>
+                    <button type="button" onClick="removeAdmin("0")" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
+                  </div>
+                  ';
+
+                  }
+                  else if ($i['status'] == 3){
+                    echo '
+                    <select id="types" class="form-control" name="types[]" value="'.$i['status'].'" required="required">
+                      <option value="">Выберите значение</option>
+                      <option value="1">Админ</option>
+                      <option value="2">Пункт приема заказов</option>
+                      <option value="3" selected>Курьер</option>
+                    </select>
+                    <button type="button" onClick="removeAdmin("0")" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
+                  </div>
+                  ';
+
+                  }
+              }
+              $link->close();
+            ?>
+</div>
+              <button type="button" id="addAdmin" class="btn btn-success mt-4" name="button">Добавить пользователя</button>
+            </div>
+
+          </div>
+        </div>
+        <input type="submit" name="" class="form-control mt-4 btn btn-primary" value="Сохранить изменения">
+
+      </form>
 </div>
 </div>
+<script type="text/javascript">
+var adminId = 0;
+function removeAdmin(id) {
+
+  $('#' + id).remove();
+}
+$('#addAdmin').click(function(){
+    adminId++;
+    $('#admins').append('\
+    <div class="col-lg-3 user" id="' + adminId + '">\
+    <label for="name" class="form-label">Логин</label>\
+    <input type="text" id="name" class="form-control" name="logins[]" value="" required>\
+    <label for="password" class="form-label">Пароль</label>\
+    <input type="password" id="password" class="form-control" name="passwords[]" value="" required>\
+    <label for="types" class="form-label">Тип</label>\
+    <select id="types" class="form-control" name="types[]" required="required">\
+      <option value="">Выберите значение</option>\
+      <option value="1">Админ</option>\
+      <option value="2">Пункт приема заказов</option>\
+      <option value="3">Курьер</option>\
+    </select>\
+      <button type="button" onClick="removeAdmin(\'' + adminId + '\')" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>\
+    </div>\
+    ');
+});
+
+var prodId = 0;
+function removeProd(id) {
+  $('#' + id).remove();
+}
+$('#addProd').click(function(){
+    prodId++;
+    id = 'prod' + prodId;
+    $('#products').append('\
+    <div class="col-lg-3 product" id="'+id+'">\
+        <label for="productName" class="col-sm-2 col-form-label">Название</label>\
+        <div class="col-sm-10">\
+          <input type="text" class="form-control" required id="productName" name="productNames[]" value="" autocomplete="off">\
+        </div>\
+        <label for="compound" class="col-sm-2 col-form-label">Описание</label>\
+          <textarea name="compounds[]" class="form-control" required id="compound" autocomplete="off" rows="5" cols="80"></textarea>\
+          <!-- <input type="text" class="form-control" required id="inputCompound" name="compound" value="" autocomplete="off"> -->\
+        <label for="inputPass" class="col-sm-2 col-form-label">Картинка</label>\
+          <input type="file" class="form-control" required id="inputImage" name="images[]" value="" autocomplete="off">\
+        <label for="inputPass" class="col-sm-2 col-form-label">Категория</label>\
+          <input type="text" class="form-control" required id="inputCompound" name="groups[]" value="" autocomplete="off">\
+        <label for="inputPass" class="col-sm-2 col-form-label">Цена (рубль)</label>\
+          <input type="number" class="form-control" required id="inputCompound" name="prices[]" value="" autocomplete="off">\
+      <button type="button" onClick="removeProd(\''+id+'\')" class="btn btn-danger mt-4" name="button">Удалить товар</button>\
+    </div>\
+    ');
+});
+
+</script>
+
 </body>
 </html>

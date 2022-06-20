@@ -27,64 +27,9 @@ file_put_contents('data/passwordDB.txt', $password);
 file_put_contents('data/nameDB.txt', $nameDB);
 
 $link = mysqli_connect($host, $login, $password, $nameDB);
-mysqli_query($link, "
-CREATE TABLE users
-(
-  id int(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  email VARCHAR(1000),
-  password INT(255),
-  status INT(255)
-  )
-");
-mysqli_query($link, "
-CREATE TABLE data
-(
-  id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(1000),
-  bg VARCHAR(1000),
-  blockBg VARCHAR(1000),
-  buttonBg VARCHAR(1000),
-  textColor VARCHAR(1000),
-  buttonTextColor VARCHAR(1000)
-  )
-");
-mysqli_query($link, "
-CREATE TABLE point
-(
-  id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  products VARCHAR(1000),
-  price INT(255),
-  number VARCHAR(1000),
-  email VARCHAR(1000),
-  status VARCHAR(1000),
-  address VARCHAR(1000),
-  point VARCHAR(1000),
-  carrier VARCHAR(1000)
-  )
-");
-mysqli_query($link, "
-CREATE TABLE cart
-(
-  id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(1000),
-  price INT(255),
-  number INT(255),
-  email VARCHAR(1000)
-  )
-");
-mysqli_query($link, "
-CREATE TABLE products
-(
-  id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(1000),
-  price VARCHAR(1000),
-  compound VARCHAR(1000),
-  image VARCHAR(1000),
-  category VARCHAR(1000)
-  )
-");
-
-
+mysqli_query($link, "DELETE FROM `users`");
+mysqli_query($link, "DELETE FROM `data`");
+mysqli_query($link, "DELETE FROM `products`");
 mysqli_query($link, "INSERT INTO data (name, bg, blockBg, buttonBg, textColor, buttonTextColor) VALUES ('$name', '$bg', '$blockBg', '$buttonBg', '$textColor', '$buttonTextColor')");
 
 for ($i = 0; $i < count($logins); $i++){
@@ -99,9 +44,5 @@ for ($i = 0; $i < count($productNames); $i++){
 move_uploaded_file($icon['tmp_name'], 'img/icon.png');
 mysqli_close($link);
 
-rename('index.php', 'index3.php');
-rename('index2.php', 'index.php');
-rename('index3.php', 'index2.php');
-
-echo '<script>location="index.php"</script>'
+echo '<script>location="admin.php"</script>'
 ?>

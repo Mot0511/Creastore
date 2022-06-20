@@ -1,191 +1,193 @@
+<?php
+if (isset($_COOKIE['login']) and isset($_COOKIE['pass'])){
+  $login = $_COOKIE['login'];
+  $pass = $_COOKIE['pass'];
+
+  $btAddToCart = 1;
+  if ($login == 'admin' or $login == 'point'){
+    $btAddToCart = 0;
+  }
+}
+$DBdata = [file_get_contents('data/hostDB.txt'), file_get_contents('data/loginDB.txt'), file_get_contents('data/passwordDB.txt'), file_get_contents('data/nameDB.txt')];
+$link = mysqli_connect($DBdata[0], $DBdata[1], $DBdata[2], $DBdata[3]);
+$res = mysqli_query($link, "SELECT * FROM data");
+for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
+?>
 <!DOCTYPE html>
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Добро пожаловать!</title>
+    <link rel="icon" href="img/icon.png">
+    <title><?php echo $data[0]['name']; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="jquery.js"></script>
-    <style media="screen">
-      .user{
-        padding-bottom: 10px;
-        padding-top: 10px;
-        border: 1px #7d7d7d solid;
-        border-radius: 10px;
-        margin-left: 11px;
-        margin-top: 11px;
+    <link rel="stylesheet" href="" id="linkCSS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style media="screen" id='css'>
+      .products{
+        margin-top: 95px;
       }
       .product{
-        padding-bottom: 10px;
-        padding-top: 10px;
-        border: 1px #7d7d7d solid;
-        border-radius: 10px;
-        margin-left: 11px;
-        margin-top: 11px;
-        width: 500px;
+        background: <?php echo $data[0]['blockBg']; ?>;
+        border-radius: 20px;
+        width: 297px;
+        padding-bottom: 20px;
+        margin-top: 25px;
+      }
+      .heading{
+        font-size: 36px;
+        color: <?php echo $data[0]['textBg']; ?>;
+        position: relative;
+        top: 30px;
+      }
+      .orderNow{
+        width: 134px;
+        height: 55px;
+        border: 5px solid <?php echo $data[0]['buttonBg']; ?>;
+        border-radius: 20px;
+        background: none;
+        color: <?php echo $data[0]['buttonTextColor']; ?>;
+        font-size: 18px;
+        transition: background-color 0.3s;
+      }
+      .orderNow:hover{
+        background-color: <?php echo $data[0]['buttonBg']; ?>;
+      }
+      .addToCart{
+        width: 90%;
+        height: 55px;
+        background: <?php echo $data[0]['buttonBg']; ?>;
+        border-radius: 20px;
+        border: 0px;
+        margin-left: 0px;
+        margin-top: 10px;
+        color: <?php echo $data[0]['buttonTextColor']; ?>;
+        font-size: 20px;
+        transition: background-color 0.2s;
+      }
+      .addToCart:hover{
+        background-color: <?php echo $data[0]['buttonBg']; ?>;
+      }
+      .imageProduct{
+        margin-top: 20px;
+        width: 80%;
+        border-radius: 20px;
+      }
+      .product p{
+        font-size: 20px;
+      }
+      @media (max-width: 1000px){
+        .heading{
+          font-size: 60px;
+        }
+        .product{
+          width: 100%;
+        }
+        .product p{
+          font-size: 40px;
+        }
+        .addToCart{
+          font-size: 35px;
+          height: 80px;
+        }
+
       }
     </style>
   </head>
   <body>
-    <div class="container my-3">
-      <h1>Добро пожаловать! Впишите данные для сайта</h1>
-      <form class="" action="start.php" method="post" enctype="multipart/form-data">
-        <div class="">
-          <h3 class="mt-4">Данные для подключения к базе данных:</h3>
-          <div class="">
-            <label for="host" class="form-label">Хост</label>
-            <input type="text" id="host" class="form-control" name="host" value="localhost" required>
-          </div>
-          <div class="">
-            <label for="login" class="form-label">Логин</label>
-              <input type="text" id="login" class="form-control" name="login" value="testStore" required>
-          </div>
-          <div class="">
-            <label for="password" class="form-label">Пароль</label>
-            <input type="text" id="password" class="form-control" name="password" value="123" required>
-          </div>
-          <div class="">
-            <label for="nameDB" class="form-label">Название базы данных</label>
-            <input type="text" id="nameDB" class="form-control" name="nameDB" value="testStore" required>
-          </div>
 
-        </div>
-        <div class="">
-          <h3 class="mt-4">Основаня информация</h3>
-          <div class="">
-            <label for="name" class="form-label">Название сайта</label>
-            <input type="text" id="name" class="form-control" name="name" value="" required>
-          </div>
-          <div class="">
-            <label for="name" class="form-label">Иконка сайта</label>
-            <input type="file" id="name" class="form-control" name="icon" value="" required>
-          </div>
-          <div class="">
-            <label for="bg" class="form-label">Фон</label>
-            <input type="color" id="bg" class="form-control" name="bg" value="" required>
-          </div>
-          <div class="">
-            <label for="blockBg" class="form-label">Фон блоков</label>
-            <input type="color" id="blockBg" class="form-control" name="blockBg" value="" required>
-          </div>
-          <div class="">
-            <label for="buttonBg" class="form-label">Фон кнопок</label>
-            <input type="color" id="buttonBg" class="form-control" name="buttonBg" value="" required>
-          </div>
-          <div class="">
-            <label for="textColor" class="form-label">Цвет текста</label>
-            <input type="color" id="textColor" class="form-control" name="textColor" value="" required>
-          </div>
-          <div class="">
-            <label for="buttonTextColor" class="form-label">Цвет текста на кнопках</label>
-            <input type="color" id="buttonTextColor" class="form-control" name="buttonTextColor" value="" required>
-          </div>
-        </div>
-        <div class="">
-          <h3 class="mt-4">Пользователи</h3>
-          <div class="users">
-            <div class="row" id="admins">
-              <div class="col-lg-3 user" id='0'>
-                <label for="name" class="form-label">Логин</label>
-                <input type="text" id="name" class="form-control" name="logins[]" value="" required>
-                <label for="password" class="form-label">Пароль</label>
-                <input type="password" id="password" class="form-control" name="passwords[]" value="" required>
-                <label for="types" class="form-label">Тип</label>
+    <?php require 'header.php'; ?>
+    <div class="products" id="products">
+      <div class="container">
+        <div class="row">
+          <?php
+          $DBdata = [file_get_contents('data/hostDB.txt'), file_get_contents('data/loginDB.txt'), file_get_contents('data/passwordDB.txt'), file_get_contents('data/nameDB.txt')];
 
-                <select id="types" class="form-control" name="types[]" required="required">
-                  <option value="">Выберите значение</option>
-                  <option value="1">Админ</option>
-                  <option value="2">Пункт приема заказов</option>
-                  <option value="3">Курьер</option>
-                </select>
+          if (! function_exists("array_key_last")) {
+              function array_key_last($array) {
+                  if (!is_array($array) || empty($array)) {
+                      return NULL;
+                  }
 
-                <button type="button" onClick="removeAdmin('0')" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
-              </div>
-            </div>
-            <button type="button" id="addAdmin" class="btn btn-success mt-4" name="button">Добавить пользователя</button>
-          </div>
-        </div>
+                  return array_keys($array)[count($array)-1];
+              }
+          }
+            $groups = [];
+            $groups2 = [];
+            $cartProducts = [];
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+            $link = mysqli_connect($DBdata[0], $DBdata[1], $DBdata[2], $DBdata[3]);
+            if ($link == false){
+              print(mysqli_connect_error());
+            }
+            mysqli_set_charset($link, 'utf8');
 
-        <div class="">
-          <h3 class="mt-4">Товары</h3>
-          <div class="users">
-            <div class="row" id="products">
-              <div class="col-lg-3 product" id='prod0'>
-                  <label for="productName" class="col-sm-2 col-form-label">Название</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" required id="productName" name="productNames[]" value="" autocomplete="off">
+            $group = mysqli_query($link, "SELECT * FROM products");
+            for ($cater = []; $row = mysqli_fetch_assoc($group); $cater[] = $row);
+
+            $cartProduct_res = mysqli_query($link, "SELECT * FROM cart WHERE email = '".$login."'");
+            for ($cartProduct_data = []; $row = mysqli_fetch_assoc($cartProduct_res); $cartProduct_data[] = $row);
+            foreach ($cartProduct_data as $i){
+                array_push($cartProducts, $i['name']);
+            }
+
+            for ($l = 0; $l < count($cater); $l++){
+              array_push($groups2, $cater[$l]['category']);
+            }
+            $groups2 = array_unique($groups2);
+
+            foreach ($groups2 as $i){
+              array_push($groups, $i);
+            }
+
+
+            $id = 0;
+            foreach ($groups as $i){
+              $res = mysqli_query($link, "SELECT * FROM products WHERE category = '".$i."'");
+              for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
+
+              echo '<p class="heading" id="'.$id.'">'.$i.'</p>';
+              $id += 1;
+              foreach ($data as $j){
+                echo '
+                  <div class="col-lg-4">
+                  <a href="product.php?name='.$j['name'].'&compound='.$j['compound'].'&image='.$j['image'].'&email='.$login.'&price='.$j['price'].'"><div class="product">
+                      <center>
+                        <div class="orderBts">
+                        <img src="img/products/'.$j['image'].'" class="imageProduct" alt="">
+                        <p>'.$j['name'].'</p>
+                        <h3>'.$j['price'].' р.</h3>
+                        </a>';
+                        if ($_COOKIE['login'] == ''){
+                          echo '<button type="submit" class="addToCart" name="button" data-bs-toggle="modal" data-bs-target="#exampleModal" name="addToCart">В корзину</button>';
+                        }
+                        else{
+                          if ($btAddToCart == 1){
+                            echo '<a href="addToCart.php?name='.$j['name'].'&email='.$login.'&price='.$j['price'].'"><button type="submit" class="addToCart" name="addToCart">В корзину</button></a>';
+                            if (in_array($j['name'], $cartProducts)){
+                              echo '<a href="product.php?name='.$j['name'].'&compound='.$j['compound'].'&image='.$j['image'].'&email='.$login.'"><p>Уже есть в корзине</p>';
+                            }
+                          }
+                        }
+
+                        echo '
+                      </div>
+                    </center>
+                    </div></a>
                   </div>
-                  <label for="compound" class="col-sm-2 col-form-label">Описание</label>
-                    <textarea name="compounds[]" class="form-control" required id="compound" autocomplete="off" rows="5" cols="80"></textarea>
-                    <!-- <input type="text" class="form-control" required id="inputCompound" name="compound" value="" autocomplete="off"> -->
-                  <label for="inputPass" class="col-sm-2 col-form-label">Картинка</label>
-                    <input type="file" class="form-control" required id="inputImage" name="images[]" value="" autocomplete="off">
-                  <label for="inputPass" class="col-sm-2 col-form-label">Категория</label>
-                    <input type="text" class="form-control" required id="inputCompound" name="groups[]" value="" autocomplete="off">
-                  <label for="inputPass" class="col-sm-2 col-form-label">Цена (рубль)</label>
-                    <input type="number" class="form-control" required id="inputCompound" name="prices[]" value="" autocomplete="off">
-                <button type="button" onClick="removeProd('prod0')" class="btn btn-danger mt-4" name="button">Удалить товар</button>
-              </div>
-            </div>
-            <button type="button" id="addProd" class="btn btn-success mt-4" name="button">Добавить товар</button>
-          </div>
+                ';
+
+
+              }
+
+            }
+
+
+            $link->close();
+          ?>
         </div>
-        <input type="submit" name="" class="form-control mt-4 btn btn-primary" value="Создать сайт">
-        </form>
+
+      </div>
     </div>
-    <script type="text/javascript">
-    var adminId = 0;
-    function removeAdmin(id) {
-
-      $('#' + id).remove();
-    }
-    $('#addAdmin').click(function(){
-        adminId++;
-        $('#admins').append('\
-        <div class="col-lg-3 user" id="' + adminId + '">\
-        <label for="name" class="form-label">Логин</label>\
-        <input type="text" id="name" class="form-control" name="logins[]" value="" required>\
-        <label for="password" class="form-label">Пароль</label>\
-        <input type="password" id="password" class="form-control" name="passwords[]" value="" required>\
-        <label for="types" class="form-label">Тип</label>\
-        <select id="types" class="form-control" name="types[]" required="required">\
-          <option value="">Выберите значение</option>\
-          <option value="1">Админ</option>\
-          <option value="2">Пункт приема заказов</option>\
-          <option value="3">Курьер</option>\
-        </select>\
-          <button type="button" onClick="removeAdmin(\'' + adminId + '\')" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>\
-        </div>\
-        ');
-    });
-
-    var prodId = 0;
-    function removeProd(id) {
-      $('#' + id).remove();
-    }
-    $('#addProd').click(function(){
-        prodId++;
-        id = 'prod' + prodId;
-        $('#products').append('\
-        <div class="col-lg-3 product" id="'+id+'">\
-            <label for="productName" class="col-sm-2 col-form-label">Название</label>\
-            <div class="col-sm-10">\
-              <input type="text" class="form-control" required id="productName" name="productNames[]" value="" autocomplete="off">\
-            </div>\
-            <label for="compound" class="col-sm-2 col-form-label">Описание</label>\
-              <textarea name="compounds[]" class="form-control" required id="compound" autocomplete="off" rows="5" cols="80"></textarea>\
-              <!-- <input type="text" class="form-control" required id="inputCompound" name="compound" value="" autocomplete="off"> -->\
-            <label for="inputPass" class="col-sm-2 col-form-label">Картинка</label>\
-              <input type="file" class="form-control" required id="inputImage" name="images[]" value="" autocomplete="off">\
-            <label for="inputPass" class="col-sm-2 col-form-label">Категория</label>\
-              <input type="text" class="form-control" required id="inputCompound" name="groups[]" value="" autocomplete="off">\
-            <label for="inputPass" class="col-sm-2 col-form-label">Цена (рубль)</label>\
-              <input type="number" class="form-control" required id="inputCompound" name="prices[]" value="" autocomplete="off">\
-          <button type="button" onClick="removeProd(\''+id+'\')" class="btn btn-danger mt-4" name="button">Удалить товар</button>\
-        </div>\
-        ');
-    });
-
-    </script>
   </body>
 </html>

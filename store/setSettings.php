@@ -35,14 +35,13 @@ mysqli_query($link, "INSERT INTO data (name, bg, blockBg, buttonBg, textColor, b
 for ($i = 0; $i < count($logins); $i++){
   mysqli_query($link, "INSERT INTO users (id, email, password, status) VALUES (NULL, '$logins[$i]', '$passwords[$i]', '$types[$i]')");
 }
-for ($i = 0; $i < count($productNames); $i++){
-  $imageName = $images['name'][$i];
-  $name = basename($images["name"][$i]);
-  move_uploaded_file($images['tmp_name'][$i], 'img/products/'.$name);
-  mysqli_query($link, "INSERT INTO products (id, name, price, compound, image, category) VALUES (NULL, '$productNames[$i]', '$prices[$i]', '$compounds[$i]', '$imageName', '$groups[$i]')");
+
+if (isset($icon)){
+  move_uploaded_file($icon['tmp_name'], 'img/icon.png');
+  echo 1;
 }
-move_uploaded_file($icon['tmp_name'], 'img/icon.png');
+
 mysqli_close($link);
 
-echo '<script>location="admin.php"</script>'
+// echo '<script>location="admin.php"</script>';
 ?>

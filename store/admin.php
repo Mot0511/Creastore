@@ -19,6 +19,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
     <meta charset="utf-8">
     <title><?php echo $data[0]['name']; ?></title>
     <link rel="icon" href="img/icon.png">
+    <script type="text/javascript" src="jquery.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -179,12 +180,15 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
           font-size: 60px;
       }
       }
-      .settings h1, h2, h3, p, label{
-        color: <?php echo $data[0]['textColor']; ?>
-      }
-      .settings{
-        margin-top: 50px;
-      }
+    .settings h1, h2, h3, p, label{
+      color: <?php echo $data[0]['textColor']; ?>
+    }
+    .settings{
+      margin-top: 50px;
+    }
+    .formLabel{
+      color: black;
+    }
     </style>
   </head>
   <body>
@@ -198,32 +202,32 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
           <div class="modal-body">
             <form class="" action="addProduct.php" method="post" enctype="multipart/form-data">
               <div class="row mb-3">
-                <label for="inputEmail" class="col-sm-2 col-form-label">Название</label>
+                <label for="inputEmail" class="col-sm-2 col-form-label formLabel">Название</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" required id="inputName" name="name" value="" autocomplete="off">
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="inputPass" class="col-sm-2 col-form-label">Описание</label>
+                <label for="inputPass" class="col-sm-2 col-form-label formLabel">Описание</label>
                 <div class="col-sm-10">
                   <textarea name="compound" class="form-control" required id="inputCompound" autocomplete="off" rows="5" cols="80"></textarea>
                   <!-- <input type="text" class="form-control" required id="inputCompound" name="compound" value="" autocomplete="off"> -->
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="inputPass" class="col-sm-2 col-form-label">Картинка</label>
+                <label for="inputPass" class="col-sm-2 col-form-label formLabel">Картинка</label>
                 <div class="col-sm-10">
                   <input type="file" class="form-control" required id="inputImage" name="image" value="" autocomplete="off">
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="inputPass" class="col-sm-2 col-form-label">Категория</label>
+                <label for="inputPass" class="col-sm-2 col-form-label formLabel">Категория</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" required id="inputCompound" name="group" value="" autocomplete="off">
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="inputPass" class="col-sm-2 col-form-label">Цена (рубль)</label>
+                <label for="inputPass" class="col-sm-2 col-form-label formLabel">Цена (рубль)</label>
                 <div class="col-sm-10">
                   <input type="number" class="form-control" required id="inputCompound" name="price" value="" autocomplete="off">
                 </div>
@@ -307,7 +311,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
         ?></div>
         <h2 class="heading">Настройки</h2>
         <div class="settings">
-          <form class="" action="setSettings.php" method="post">
+          <form class="" action="setSettings.php" method="post" enctype="multipart/form-data">
           <div class="">
             <h3 class="mt-4">Данные для подключения к базе данных:</h3>
             <div class="">
@@ -336,7 +340,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
             </div>
             <div class="">
               <label for="name" class="form-label">Иконка сайта</label>
-              <input type="file" id="name" class="form-control" name="icon" value="" required>
+              <input type="file" id="name" class="form-control" name="icon" value="">
             </div>
             <div class="">
               <label for="bg" class="form-label">Фон</label>
@@ -384,7 +388,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
                       <option value="2">Пункт приема заказов</option>
                       <option value="3">Курьер</option>
                     </select>
-                    <button type="button" onClick="removeAdmin("0")" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
+                    <button type="button" onClick="removeAdmin(\'0\')" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
                   </div>
                   ';
 
@@ -397,7 +401,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
                       <option value="2" selected>Пункт приема заказов</option>
                       <option value="3">Курьер</option>
                     </select>
-                    <button type="button" onClick="removeAdmin("0")" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
+                    <button type="button" onClick="removeAdmin(\'0\')" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
                   </div>
                   ';
 
@@ -410,7 +414,7 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
                       <option value="2">Пункт приема заказов</option>
                       <option value="3" selected>Курьер</option>
                     </select>
-                    <button type="button" onClick="removeAdmin("0")" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
+                    <button type="button" onClick="removeAdmin(\'0\')" class="btn btn-danger mt-4" name="button">Удалить пользователя</button>
                   </div>
                   ';
 
@@ -432,7 +436,6 @@ for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
 <script type="text/javascript">
 var adminId = 0;
 function removeAdmin(id) {
-
   $('#' + id).remove();
 }
 $('#addAdmin').click(function(){
@@ -454,34 +457,6 @@ $('#addAdmin').click(function(){
     </div>\
     ');
 });
-
-var prodId = 0;
-function removeProd(id) {
-  $('#' + id).remove();
-}
-$('#addProd').click(function(){
-    prodId++;
-    id = 'prod' + prodId;
-    $('#products').append('\
-    <div class="col-lg-3 product" id="'+id+'">\
-        <label for="productName" class="col-sm-2 col-form-label">Название</label>\
-        <div class="col-sm-10">\
-          <input type="text" class="form-control" required id="productName" name="productNames[]" value="" autocomplete="off">\
-        </div>\
-        <label for="compound" class="col-sm-2 col-form-label">Описание</label>\
-          <textarea name="compounds[]" class="form-control" required id="compound" autocomplete="off" rows="5" cols="80"></textarea>\
-          <!-- <input type="text" class="form-control" required id="inputCompound" name="compound" value="" autocomplete="off"> -->\
-        <label for="inputPass" class="col-sm-2 col-form-label">Картинка</label>\
-          <input type="file" class="form-control" required id="inputImage" name="images[]" value="" autocomplete="off">\
-        <label for="inputPass" class="col-sm-2 col-form-label">Категория</label>\
-          <input type="text" class="form-control" required id="inputCompound" name="groups[]" value="" autocomplete="off">\
-        <label for="inputPass" class="col-sm-2 col-form-label">Цена (рубль)</label>\
-          <input type="number" class="form-control" required id="inputCompound" name="prices[]" value="" autocomplete="off">\
-      <button type="button" onClick="removeProd(\''+id+'\')" class="btn btn-danger mt-4" name="button">Удалить товар</button>\
-    </div>\
-    ');
-});
-
 </script>
 
 </body>
